@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Free Mortgage Calculator | Calculate Home Loan Payments & Interest</title>
+    <meta
+      name="title"
+      content="Free Mortgage Calculator | Calculate Home Loan Payments & Interest"
+    />
+    <meta
+      name="description"
+      content="Free online mortgage calculator to estimate monthly payments, total interest, and loan amortization. Calculate home loan payments with extra payments, different frequencies, and property details."
+    />
+    <meta
+      name="keywords"
+      content="mortgage calculator, home loan calculator, mortgage payment calculator, loan amortization, interest calculator, home financing, mortgage rates, loan calculator"
+    />
+    <meta name="author" content="Mortgage Calculator" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tiaanswart.github.io/mortgage-calculator/" />
+    <meta
+      property="og:title"
+      content="Free Mortgage Calculator | Calculate Home Loan Payments & Interest"
+    />
+    <meta
+      property="og:description"
+      content="Free online mortgage calculator to estimate monthly payments, total interest, and loan amortization. Calculate home loan payments with extra payments, different frequencies, and property details."
+    />
+    <meta
+      property="og:image"
+      content="https://tiaanswart.github.io/mortgage-calculator/assets/og-image.png"
+    />
+    <meta property="og:site_name" content="Mortgage Calculator" />
+    <meta property="og:locale" content="en_NZ" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://tiaanswart.github.io/mortgage-calculator/" />
+    <meta
+      property="twitter:title"
+      content="Free Mortgage Calculator | Calculate Home Loan Payments & Interest"
+    />
+    <meta
+      property="twitter:description"
+      content="Free online mortgage calculator to estimate monthly payments, total interest, and loan amortization. Calculate home loan payments with extra payments, different frequencies, and property details."
+    />
+    <meta
+      property="twitter:image"
+      content="https://tiaanswart.github.io/mortgage-calculator/assets/og-image.png"
+    />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="msapplication-TileColor" content="#3B82F6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Mortgage Calculator" />
+    <meta name="application-name" content="Mortgage Calculator" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tiaanswart.github.io/mortgage-calculator/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Free Mortgage Calculator",
+        "description": "Free online mortgage calculator to estimate monthly payments, total interest, and loan amortization",
+        "url": "https://tiaanswart.github.io/mortgage-calculator/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NZD"
+        },
+        "featureList": [
+          "Monthly payment calculation",
+          "Interest rate analysis",
+          "Extra payment planning",
+          "Amortization schedule",
+          "Property value tracking",
+          "Net worth visualization"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "Mortgage Calculator"
+        }
+      }
+    </script>
+
+    <!-- External Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#3B82F6',
+              secondary: '#1E40AF',
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+      <h1
+        class="text-4xl font-bold text-center text-gray-800 mb-8 flex items-center justify-center gap-3"
+      >
+        <img src="assets/favicon.svg" alt="Mortgage Calculator Icon" class="w-12 h-12" />
+        Free Mortgage Calculator
+      </h1>
+
+      <!-- Input Form -->
+      <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Loan Details</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Loan Amount -->
+          <div>
+            <label for="loanAmount" class="block text-sm font-medium text-gray-700 mb-2">
+              Loan Amount ($)
+            </label>
+            <input
+              type="number"
+              id="loanAmount"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="300000"
+              min="0"
+              step="1000"
+              value="300000"
+            />
+            <div id="loanAmountError" class="hidden text-red-600 text-sm mt-1"></div>
+          </div>
+
+          <!-- Annual Interest Rate -->
+          <div>
+            <label for="interestRate" class="block text-sm font-medium text-gray-700 mb-2">
+              Annual Interest Rate (%)
+            </label>
+            <input
+              type="number"
+              id="interestRate"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="4.5"
+              min="0"
+              max="100"
+              step="0.01"
+              value="4.5"
+            />
+            <div id="interestRateError" class="hidden text-red-600 text-sm mt-1"></div>
+          </div>
+
+          <!-- Interest Accrual Frequency -->
+          <div>
+            <label for="interestAccrual" class="block text-sm font-medium text-gray-700 mb-2">
+              Interest Accrual Frequency
+            </label>
+            <select
+              id="interestAccrual"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              <option value="daily" selected>Daily (365 days/year)</option>
+              <option value="monthly">Monthly (12 periods/year)</option>
+              <option value="yearly">Yearly (1 period/year)</option>
+            </select>
+            <p class="text-xs text-gray-500 mt-1">
+              How often interest is calculated on the loan balance
+            </p>
+          </div>
+
+          <!-- Loan Period -->
+          <div>
+            <label for="loanPeriod" class="block text-sm font-medium text-gray-700 mb-2">
+              Loan Period (Years)
+            </label>
+            <input
+              type="number"
+              id="loanPeriod"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              placeholder="30"
+              min="1"
+              max="50"
+              value="30"
+            />
+            <div id="loanPeriodError" class="hidden text-red-600 text-sm mt-1"></div>
+          </div>
+
+          <!-- Payment Frequency -->
+          <div>
+            <label for="paymentFrequency" class="block text-sm font-medium text-gray-700 mb-2">
+              Payment Frequency
+            </label>
+            <select
+              id="paymentFrequency"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            >
+              <option value="52">Weekly (52 payments/year)</option>
+              <option value="26">Fortnightly (26 payments/year)</option>
+              <option value="12" selected>Monthly (12 payments/year)</option>
+              <option value="1">Yearly (1 payment/year)</option>
+            </select>
+          </div>
+
+          <!-- Start Date -->
+          <div>
+            <label for="startDate" class="block text-sm font-medium text-gray-700 mb-2">
+              Start Date
+            </label>
+            <input
+              type="date"
+              id="startDate"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+            <div id="startDateError" class="hidden text-red-600 text-sm mt-1"></div>
+          </div>
+
+          <!-- First Payment Date -->
+          <div>
+            <label for="firstPaymentDate" class="block text-sm font-medium text-gray-700 mb-2">
+              First Payment Date
+            </label>
+            <input
+              type="date"
+              id="firstPaymentDate"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+            />
+            <p class="text-xs text-gray-500 mt-1">Defaults to start date if not specified</p>
+            <div id="firstPaymentDateError" class="hidden text-red-600 text-sm mt-1"></div>
+          </div>
+        </div>
+
+        <!-- Property Details Section -->
+        <div class="mt-8">
+          <h3 class="text-xl font-semibold text-gray-700 mb-4">Property Details (Optional)</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Property Value -->
+            <div>
+              <label for="propertyValue" class="block text-sm font-medium text-gray-700 mb-2">
+                Property Value ($)
+              </label>
+              <input
+                type="number"
+                id="propertyValue"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="0"
+                min="0"
+                step="1000"
+                value="0"
+              />
+              <p class="text-xs text-gray-500 mt-1">Current market value</p>
+            </div>
+
+            <!-- Property Offer -->
+            <div>
+              <label for="propertyOffer" class="block text-sm font-medium text-gray-700 mb-2">
+                Property Offer ($)
+              </label>
+              <input
+                type="number"
+                id="propertyOffer"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="0"
+                min="0"
+                step="1000"
+                value="0"
+              />
+              <p class="text-xs text-gray-500 mt-1">Purchase price offered</p>
+            </div>
+
+            <!-- Deposit Percentage -->
+            <div>
+              <label for="depositPercentage" class="block text-sm font-medium text-gray-700 mb-2">
+                Deposit Percentage (%)
+              </label>
+              <input
+                type="number"
+                id="depositPercentage"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="20"
+                min="0"
+                max="100"
+                step="0.1"
+                value="20"
+              />
+              <p class="text-xs text-gray-500 mt-1">Percentage of offer price</p>
+            </div>
+
+            <!-- Deposit Value -->
+            <div>
+              <label for="depositValue" class="block text-sm font-medium text-gray-700 mb-2">
+                Deposit Value ($)
+              </label>
+              <input
+                type="number"
+                id="depositValue"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="0"
+                min="0"
+                step="1000"
+                value="0"
+              />
+              <p class="text-xs text-gray-500 mt-1">Fixed deposit amount</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extra Payments Section -->
+        <div class="mt-8">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-700">Extra Payments</h3>
+            <button
+              id="addExtraPaymentBtn"
+              class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200 transform hover:scale-105"
+            >
+              + Add Extra Payment
+            </button>
+          </div>
+
+          <div id="extraPaymentsContainer" class="space-y-4">
+            <!-- Extra payment entries will be added here -->
+          </div>
+
+          <!-- Global extra payments error message -->
+          <div id="extraPaymentsError" class="hidden text-red-600 text-sm mt-2"></div>
+        </div>
+
+        <div class="mt-6">
+          <button
+            id="calculateBtn"
+            class="w-full bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-md transition duration-200 transform hover:scale-105"
+          >
+            Calculate Mortgage
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Summary -->
+      <div id="resultsSummary" class="bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Summary</h2>
+
+        <!-- URL Share Notification -->
+        <div
+          id="urlShareNotification"
+          class="hidden mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg"
+        >
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"
+                />
+              </svg>
+              <span class="text-blue-800 font-medium"
+                >Calculation saved to URL! You can now share this link with others.</span
+              >
+            </div>
+            <button
+              id="copyUrlBtn"
+              class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm font-medium transition duration-200"
+            >
+              Copy URL
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-blue-800">Scheduled Payment</h3>
+            <p id="scheduledPayment" class="text-2xl font-bold text-blue-600">$0</p>
+          </div>
+
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-green-800">Scheduled Payments</h3>
+            <p id="scheduledPayments" class="text-2xl font-bold text-green-600">0</p>
+          </div>
+
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-purple-800">Actual Payments</h3>
+            <p id="actualPayments" class="text-2xl font-bold text-purple-600">0</p>
+          </div>
+
+          <div class="bg-yellow-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-yellow-800">Total Extra Payments</h3>
+            <p id="totalExtraPayments" class="text-2xl font-bold text-yellow-600">$0</p>
+          </div>
+
+          <div class="bg-red-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-red-800">Total Interest</h3>
+            <p id="totalInterest" class="text-2xl font-bold text-red-600">$0</p>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-indigo-800">Total Paid</h3>
+            <p id="totalPaid" class="text-2xl font-bold text-indigo-600">$0</p>
+          </div>
+
+          <div class="bg-emerald-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-emerald-800">Interest Saved</h3>
+            <p id="interestSaved" class="text-2xl font-bold text-emerald-600">$0</p>
+          </div>
+        </div>
+
+        <!-- Payment Date Summary -->
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-cyan-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-cyan-800">Estimated Last Payment Date</h3>
+            <p id="lastPaymentDate" class="text-xl font-bold text-cyan-600">Not calculated</p>
+            <p class="text-sm text-cyan-700 mt-1">Without extra payments</p>
+          </div>
+
+          <div class="bg-teal-50 p-4 rounded-lg">
+            <h3 class="text-lg font-semibold text-teal-800">Early Last Payment Date</h3>
+            <div class="flex items-center gap-2">
+              <p id="earlyPaymentDate" class="text-xl font-bold text-teal-600">Not calculated</p>
+              <span
+                id="timeSavedBadge"
+                class="hidden px-2 py-1 text-xs font-semibold text-white bg-teal-600 rounded-full"
+              ></span>
+            </div>
+            <p class="text-sm text-teal-700 mt-1">With extra payments</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loan Balance Chart -->
+      <div id="loanChart" class="bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Loan Balance Over Time</h2>
+        <div class="w-full h-96">
+          <canvas id="balanceChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Net Worth Chart -->
+      <div id="netWorthChart" class="bg-white rounded-lg shadow-lg p-6 mb-8 hidden">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Net Worth Over Time</h2>
+        <p class="text-gray-600 mb-4">
+          Net worth represents your equity in the property (Property Value - Remaining Loan Balance)
+        </p>
+        <div class="w-full h-96">
+          <canvas id="netWorthChartCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Payment Table -->
+      <div id="paymentTable" class="bg-white rounded-lg shadow-lg p-6 hidden">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Payment Schedule</h2>
+
+        <div class="overflow-x-auto">
+          <div class="max-h-96 overflow-y-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50 sticky top-0 z-10">
+                <tr>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Payment #
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Payment Date
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-bold text-indigo-600 uppercase tracking-wider bg-indigo-100"
+                  >
+                    Beginning Balance
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Scheduled Payment
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Extra Payment
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-100"
+                  >
+                    Total Payment
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Principal
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Interest
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-bold text-purple-600 uppercase tracking-wider bg-purple-100"
+                  >
+                    Ending Balance
+                  </th>
+                  <th
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Cumulative Interest
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="paymentTableBody" class="bg-white divide-y divide-gray-200">
+                <!-- Payment rows will be inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="script.js"
+      integrity="sha384-VB2vaaoTTo+/ElsQ96MWBl6pLn96svAe784Gn7UfdYDeF+DlOd1F2kN7mCJp9PAF"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>

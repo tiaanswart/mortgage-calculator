@@ -1,0 +1,39 @@
+{
+  "name": "mortgage-calculator",
+  "version": "1.0.0",
+  "description": "A comprehensive mortgage calculator with interactive charts, payment schedules, and shareable URL functionality",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "deploy": "./deploy.sh",
+    "integrity": "node update-integrity.js",
+    "integrity:update": "node update-integrity.js update",
+    "integrity:watch": "node update-integrity.js watch"
+  },
+  "keywords": [
+    "mortgage",
+    "calculator",
+    "financial",
+    "loan",
+    "amortization",
+    "charts",
+    "javascript",
+    "html",
+    "css",
+    "tailwind"
+  ],
+  "author": "Tiaan Swart",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiaanswart/mortgage-calculator.git"
+  },
+  "homepage": "https://tiaanswart.github.io/mortgage-calculator",
+  "bugs": {
+    "url": "https://github.com/tiaanswart/mortgage-calculator/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
