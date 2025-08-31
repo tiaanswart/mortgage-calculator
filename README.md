@@ -1,7 +1,5 @@
 # Mortgage Calculator
 
-[![Deploy to GitHub Pages](https://github.com/tiaanswart/mortgage-calculator/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)](https://tiaanswart.github.io/mortgage-calculator)
-
 A comprehensive mortgage calculator built with HTML, Tailwind CSS, and JavaScript. This single-page application provides detailed mortgage calculations including payment schedules, amortization tables, visual comparisons with interactive charts, net worth tracking, and **shareable URL functionality**.
 
 ## 🚀 Features
@@ -139,6 +137,7 @@ The calculator automatically saves all input parameters to the URL, making calcu
 ```
 
 **Parameter Breakdown:**
+
 - `la` = Loan Amount
 - `ir` = Interest Rate
 - `ia` = Interest Accrual (daily/monthly/yearly)
@@ -158,11 +157,13 @@ Complex extra payment data is base64-encoded as a single parameter:
 
 ```javascript
 // Example: Recurring $500 monthly for 12 payments
-const extraPayments = [{
-  "t": "recurring",  // type
-  "a": 500,         // amount
-  "c": 12           // count
-}];
+const extraPayments = [
+  {
+    t: 'recurring', // type
+    a: 500, // amount
+    c: 12, // count
+  },
+];
 // Encoded as: W3sidCI6InJlY3VycmluZyIsImEiOjUwMCwiYyI6MTJ9XQ==
 ```
 
@@ -407,10 +408,12 @@ Where:
 This project is optimized for secure GitHub Pages deployment with proper CI/CD practices. Follow these steps to deploy:
 
 1. **Create a GitHub Repository**:
+
    - Go to [GitHub](https://github.com) and create a new repository
    - Name it `mortgage-calculator` or any name you prefer
 
 2. **Upload Your Files**:
+
    ```bash
    git init
    git add .
@@ -421,6 +424,7 @@ This project is optimized for secure GitHub Pages deployment with proper CI/CD p
    ```
 
 3. **Enable GitHub Pages**:
+
    - Go to your repository on GitHub
    - Click on "Settings" tab
    - Scroll down to "Pages" section
@@ -439,12 +443,14 @@ This project is optimized for secure GitHub Pages deployment with proper CI/CD p
 If you prefer not to use GitHub Actions:
 
 1. **Create gh-pages branch**:
+
    ```bash
    git checkout -b gh-pages
    git push origin gh-pages
    ```
 
 2. **Enable GitHub Pages**:
+
    - Go to repository Settings → Pages
    - Select "Deploy from a branch"
    - Choose "gh-pages" branch
